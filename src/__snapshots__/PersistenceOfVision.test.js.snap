@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initial persist correctly 1`] = `<div />`;
+
+exports[`passthru and persist multiple children correctly 1`] = `
+<div>
+  <p>
+    How are you?
+  </p>
+  <p>
+    I am fine.
+  </p>
+</div>
+`;
+
+exports[`passthru and persist multiple children correctly 2`] = `
+<div>
+  <p>
+    How are you?
+  </p>
+  <p>
+    I am fine.
+  </p>
+</div>
+`;
+
+exports[`passthru when not removed 1`] = `
+<div
+  className="passed"
+>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`passthru when not removed 2`] = `
+<div
+  className="passed-not-persisted"
+>
+  <p>
+    Aloha!
+  </p>
+</div>
+`;
+
+exports[`persist and unpersist correctly 1`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`persist and unpersist correctly 2`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;

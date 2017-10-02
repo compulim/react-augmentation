@@ -1,0 +1,374 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cross switch pipe correctly 1`] = `
+<div>
+  <h1>
+    first
+     x 
+    second
+  </h1>
+  <div
+    className="first-inlet"
+  />
+  <div
+    className="second-inlet"
+  />
+  <div
+    className="first-outlet"
+  >
+    <div>
+      <p>
+        How are you?
+      </p>
+    </div>
+  </div>
+  <div
+    className="second-outlet"
+  >
+    <div>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`cross switch pipe correctly 2`] = `
+<div>
+  <h1>
+    second
+     x 
+    first
+  </h1>
+  <div
+    className="first-inlet"
+  />
+  <div
+    className="second-inlet"
+  />
+  <div
+    className="first-outlet"
+  >
+    <div>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+  <div
+    className="second-outlet"
+  >
+    <div>
+      <p>
+        How are you?
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`inlet join and leave pipe correctly 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`inlet join and leave pipe correctly 2`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Hello, World!
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`inlet join and leave pipe correctly 3`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`multiplex correctly 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="first-outlet"
+  >
+    <div>
+      <p>
+        How are you?
+      </p>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+  <div
+    className="second-outlet"
+  >
+    <div>
+      <p>
+        How are you?
+      </p>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet join and leave pipe correctly 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`outlet join and leave pipe correctly 2`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Hello, World!
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`outlet join and leave pipe correctly 3`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`pipes correctly 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div
+      className="passed"
+    >
+      <p>
+        How are you?
+      </p>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`propagate content change correctly 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Hello, World!
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`propagate content change correctly 2`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Aloha!
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should unmount pipe correctly 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Hello, World!
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should unmount pipe correctly 2`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`should unmount pipe correctly 3`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  />
+</div>
+`;
+
+exports[`shows outlet children if nothing from inlet 1`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Default content
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`shows outlet children if nothing from inlet 2`] = `
+<div>
+  <div
+    className="inlet"
+  />
+  <div
+    className="outlet"
+  >
+    <div>
+      <p>
+        Overriden content
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`switch pipe correctly 1`] = `
+<div>
+  <h1>
+    first
+  </h1>
+  <div
+    className="inlet"
+  />
+  <div
+    className="first-outlet"
+  >
+    <div>
+      <p>
+        How are you?
+      </p>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+  <div
+    className="second-outlet"
+  >
+    <div />
+  </div>
+</div>
+`;
+
+exports[`switch pipe correctly 2`] = `
+<div>
+  <h1>
+    second
+  </h1>
+  <div
+    className="inlet"
+  />
+  <div
+    className="first-outlet"
+  >
+    <div />
+  </div>
+  <div
+    className="second-outlet"
+  >
+    <div>
+      <p>
+        How are you?
+      </p>
+      <p>
+        I am fine.
+      </p>
+    </div>
+  </div>
+</div>
+`;

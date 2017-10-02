@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`freeze multiple children correctly 1`] = `
+<div>
+  <p>
+    How are you?
+  </p>
+  <p>
+    I am fine.
+  </p>
+</div>
+`;
+
+exports[`freeze multiple children correctly 2`] = `
+<div>
+  <p>
+    How are you?
+  </p>
+  <p>
+    I am fine.
+  </p>
+</div>
+`;
+
+exports[`freeze multiple children correctly 3`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+  <p>
+    Aloha!
+  </p>
+</div>
+`;
+
+exports[`frozen and thaw correctly 1`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`frozen and thaw correctly 2`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`frozen and thaw correctly 3`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`frozen and thaw correctly 4`] = `
+<div>
+  <p>
+    Aloha!
+  </p>
+</div>
+`;
+
+exports[`initial freeze correctly 1`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`initial freeze correctly 2`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`passthru when not frozen 1`] = `
+<div>
+  <p>
+    Hello, World!
+  </p>
+</div>
+`;
+
+exports[`passthru when not frozen 2`] = `
+<div
+  className="passed"
+>
+  <p>
+    Aloha!
+  </p>
+</div>
+`;
+
+exports[`should freeze with reordered key correctly 1`] = `
+<div>
+  <div>
+    <p>
+      How are you?
+    </p>
+  </div>
+  <div>
+    <p>
+      I am fine
+    </p>
+  </div>
+</div>
+`;
+
+exports[`should freeze with reordered key correctly 2`] = `
+<div>
+  <div>
+    <p>
+      I am fine
+    </p>
+  </div>
+  <div>
+    <p>
+      How are you?
+    </p>
+  </div>
+</div>
+`;

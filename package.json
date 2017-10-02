@@ -1,0 +1,42 @@
+{
+  "name": "react-augmentation",
+  "version": "1.0.0",
+  "description": "DOM augmentation to enable simpler DOM hierarchy",
+  "module": "lib/index.js",
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "build": "babel ./src --ignore *.test.js --out-dir ./lib --source-maps",
+    "build:watch": "npm run build -- --watch",
+    "clean": "rimraf lib",
+    "prepare": "npm run build",
+    "test": "jest",
+    "test:watch": "npm run test -- --watch"
+  },
+  "author": "William Wong <compulim@hotmail.com> (http://compulim.info/)",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.0.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "enzyme": "^2.9.1",
+    "jest": "^21.0.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.6.2"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/"
+    ]
+  }
+}
