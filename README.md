@@ -37,19 +37,23 @@ You wrap `<Modal>` in `<Inlet>` and put side-by-side to where its lifetime is ma
 
 ```jsx
 <body>
-  <form>
-    <button onClick={ this.handleSubmit }>Submit</button>
-    <Inlet name="modal">
-      <Modal title="Confirm">
-        <p>Are you sure to submit the form?</p>
-        <button>Yes</button>
-        <button>No</button>
-      </Modal>
-    </Inlet>
-  </form>
-  <Outlet name="modal" />
+  <PipeProvider>
+    <form>
+      <button onClick={ this.handleSubmit }>Submit</button>
+      <Inlet name="modal">
+        <Modal title="Confirm">
+          <p>Are you sure to submit the form?</p>
+          <button>Yes</button>
+          <button>No</button>
+        </Modal>
+      </Inlet>
+    </form>
+    <Outlet name="modal" />
+  </PipeProvider>
 </body>
 ```
+
+To support pipe operator, you need to wrap your app in `<PipeProvider>`, or wrap the common ancestor of `<Inlet>` and `<Outlet>` component. This is required because pipe operator is implemented using React context.
 
 ## Persistence of vision
 
