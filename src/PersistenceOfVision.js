@@ -21,20 +21,18 @@ export default class PersistenceOfVision extends React.PureComponent {
   }
 
   render() {
-    const { onPersist, ...otherProps } = this.props;
+    const { onPersist, wrappingType, ...otherProps } = this.props;
 
-    return (
-      <div { ...otherProps }>
-        { this.state.children }
-      </div>
-    );
+    return React.createElement(wrappingType, { ...otherProps }, this.state.children );
   }
 }
 
 PersistenceOfVision.defaultProps = {
-  onPersist: () => 0
+  onPersist   : () => 0,
+  wrappingType: 'div'
 };
 
 PersistenceOfVision.propTypes = {
-  onPersist: PropTypes.func
+  onPersist   : PropTypes.func,
+  wrappingType: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };

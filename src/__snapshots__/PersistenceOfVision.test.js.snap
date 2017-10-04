@@ -59,3 +59,15 @@ exports[`persist and unpersist correctly 2`] = `
   </p>
 </div>
 `;
+
+exports[`should use a string wrapping type 1`] = `
+<li>
+  Hello, World!
+</li>
+`;
+
+exports[`should use a wrapping component 1`] = `
+<li>
+  Hello, World!
+</li>
+`;

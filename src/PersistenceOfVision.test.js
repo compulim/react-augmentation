@@ -76,3 +76,23 @@ it('should emit onPersist when unmount', () => {
 
   expect(numHandlePersist).toBe(1);
 });
+
+it('should use a string wrapping type', () => {
+  const component = renderer.create(
+    <PersistenceOfVision wrappingType="li">
+      Hello, World!
+    </PersistenceOfVision>
+  );
+
+  expect(component.toJSON()).toMatchSnapshot();
+});
+
+it('should use a wrapping component', () => {
+  const component = renderer.create(
+    <PersistenceOfVision wrappingType={ props => <li>{ props.children }</li> }>
+      Hello, World!
+    </PersistenceOfVision>
+  );
+
+  expect(component.toJSON()).toMatchSnapshot();
+});
