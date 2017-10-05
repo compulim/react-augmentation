@@ -6,6 +6,18 @@
   "files": [
     "lib/*"
   ],
+  "keywords": [
+    "augment",
+    "augmentation",
+    "augmented",
+    "dialog",
+    "inlet",
+    "modal",
+    "outlet",
+    "persistence",
+    "pipe",
+    "react"
+  ],
   "scripts": {
     "build": "babel ./src --ignore *.test.js --out-dir ./lib --source-maps",
     "build:watch": "npm run build -- --watch",
