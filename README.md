@@ -33,17 +33,17 @@ This is bad, because array passed into `<List>` can differ from time to time eve
 
 Use `props.children` to pass items. As a bonus, you can also pass rich and live content.
 
-You may need the anti-pattern because you want to have temporal or permanent control on the lifetime of the items, e.g. for fade out animation. If you allow the user to remove item as needed, it will either break animation, or make the component very complicated to use.
+You may prefer the anti-pattern version of `<List>` because you want to have temporal or permanent control on the lifetime of the items, e.g. for fade out animation. If you allow the user to remove item as needed, it will either break animation, or make the component very complicated to use.
 
 ### Deterministic and traceability
 
 Consider you want to show a modal on topmost layer (last child of `<body>`). You may end up either using a global store or build a function, that would be `this.props.dispatch(ModalActions.show())` or `MessageBox.show()` respectively.
 
-Then later on, when you want to put rich and live content in the dialog box, you will need to update the global store or call `MessageBox.show()` continuously. What's worse, if you need to put an `<input>` in the modal, it will become very difficult.
+Then later on, when you want to put rich and live content in the dialog box, you will need to update the global store or call `MessageBox.show()` continuously. What's worse, if you need to put an `<input>` in the modal and receive its event rightaway, it will become difficult and complicated.
 
-Updating the modal manually and continuously is a plausible workaround, but you will be trading deterministic and traceability. Debugging would become difficult. Saving the current browser state become a complicated business because the modal is non-deterministic.
+Updating the modal manually and continuously is a plausible workaround, but you will be trading deterministic and traceability. Debugging would become difficult because lots of function calls. And saving the current browser state become a complicated business because the modal is not declarative and non-deterministic.
 
-The better way is to create the modal close to where it is needed. But keeping the modal in the topmost layer means you need to manipulate DOM manually, which is a big no-no for React.
+The better way is to use `render()` to create the modal, probably close to where it is needed. But keeping the modal in the topmost layer means you need to manipulate DOM manually, which is a big no-no for React.
 
 # Operators
 
@@ -112,9 +112,9 @@ When the user click "Submit", you want to create a new `<Modal>` and append to `
 </body>
 ```
 
-But it might not be easily done because at the time you create the modal, you might be deep in the DOM. To talk to outmost DOM hierarchy, that means you either need a global store like Redux, or writing a modal service using context.
+But it might not be easily done because at the time you create the modal, you might be deep in the DOM. To talk to outmost DOM hierarchy that is not a direct ancestor, that means you either need a global store like Redux, or writing a modal service using context.
 
-Furthermore, if the content of the dialog box has rich or lively content, it will be complicated to implement using Redux.
+Furthermore, if the content of the dialog box has rich or live content, it will be complicated to implement using Redux.
 
 ### How you use it?
 
@@ -138,13 +138,13 @@ You wrap `<Modal>` in `<Inlet>` and put side-by-side to where its lifetime is ma
 </body>
 ```
 
-To support pipe operator, you need to wrap your app in `<PipeProvider>`, or wrap the common ancestor of `<Inlet>` and `<Outlet>` component. This is required because pipe operator is implemented using React context.
+Similar to Redux `<Provider>`, which use React context intensively. To support pipe operator, you need to wrap your one of the common ancestor of `<Inlet>` and `<Outlet>` component, with `<PipeProvider>`. Usually, you will wrap the topmost layer of your app.
 
 ## Persistence of vision
 
 ### How it works?
 
-When the content of `<PersistenceOfVision>` is emptied, they will be persisted.
+Reviving an unmounted element temporarily for animation. The revived element is a frozen shallow copy. It is designed to be non-deterministic to demote its usage for extended time.
 
 #### Your code
 
@@ -156,13 +156,21 @@ Initially, you write
 </PersistenceOfVision>
 ```
 
-Then mutate it into
+React will render it as
+
+```html
+<div>
+  <p>Hello, World!</p>
+</div>
+```
+
+Then you mutate it into
 
 ```jsx
 <PersistenceOfVision />
 ```
 
-#### Would become
+React will render it as the children is never unmounted, like
 
 ```
 <div>
@@ -170,13 +178,11 @@ Then mutate it into
 </div>
 ```
 
-The unmounted element is persisted on the page temporarily.
+Unmounted children inside `<PersistenceOfVision>` will be persisted temporarily to enable animation.
 
 ### Why you need it?
 
-Animate an unmounting element. Enables user of your component to unmount children as needed.
-
-For example, you implement an UI library for a list component named `<List>`. You expect user of your `<List>` component should produce a DOM hierarchy like this:
+For example, you implement an UI library for a beautiful list component named `<List>`. You expect user of your `<List>` component should produce a DOM hierarchy like this:
 
 ```jsx
 <List>
@@ -195,8 +201,8 @@ You can opt for an alternative solution by forcing item lifetime controlled by `
 
 But there are few disadvantages to this pattern:
 
-* Since `items` is an array, if every `render()` produce a new array, it will impact performance. User of your component need to implement memoization themselves
-* Supporting rich content (i.e. DOM elements) is not trivial
+* It is easy to produce wasted render because of careless user create array during `render()` loop, impacting performance
+* Supporting rich and live content is not trivial
 
 ### How you use it?
 
@@ -206,6 +212,7 @@ Inside `<List>`, you deploy `<PersistenceOfVision>`:
 class List extends React.Component {
   componentWillReceiveProps(nextProps) {
     // Remember how many items were removed
+    // In real world, you should also remember where the item is removed
     this.setState(() => ({
       numItemsRemoved: Math.max(0, this.props.items.length - nextProps.items.length)
     }))
@@ -213,22 +220,22 @@ class List extends React.Component {
 
   render() {
     // It is important to add empty items and rendering the list together with existing items
-    // This is because the internal handling of key in React
+    // This is because the internal handling of key in React, explained in caveats section
     const allItems = this.items.concat(new Array(this.state.numItemsRemoved).fill());
 
     return (
-      <div>
+      <ul>
         {
-          allItems.map((item, index) =>
+          allItems.map(item =>
             <PersistenceOfVision
-              className={ item ? '' : 'fadeOut' }
-              key      ={ index }
+              className   ={ item ? '' : 'fadeOut' }
+              wrappingType="li"
             >
               { item }
             </PersistenceOfVision>
           )
         }
-      </div>
+      </ul>
     );
   }
 }
@@ -246,10 +253,10 @@ Before the user remove "Buy eggs", React render this:
 Which become
 
 ```jsx
-<div>
-  <div>Buy milk</div>
-  <div>Buy eggs</div>
-</div>
+<ul>
+  <li>Buy milk</li>
+  <li>Buy eggs</li>
+</ul>
 ```
 
 After we removed "Buy eggs" from the list, we still render two `<PersistenceOfVision>`, like this:
@@ -264,13 +271,13 @@ After we removed "Buy eggs" from the list, we still render two `<PersistenceOfVi
 Which would become
 
 ```jsx
-<div>
-  <div>Buy milk</div>
-  <div className="fadeOut">Buy eggs</div>
-</div>
+<ul>
+  <li>Buy milk</li>
+  <li className="fadeOut">Buy eggs</li>
+</ul>
 ```
 
-Although the last one does not have any content, `<PersistenceOfVision>` will temporarily brought back the content, i.e. "Buy eggs".
+Although the last one does not have any content, `<PersistenceOfVision>` will temporarily revive it.
 
 ### Caveats
 
@@ -280,7 +287,7 @@ Persistence of vision should only be used for short period of time. This is beca
 
 #### Using "key" props
 
-If you are using "key" props in an array of `<PersistenceOfVision>`, make sure you render all `<PoV>` in a single `Array.map()` loop. Consider the keys in between these two scenarios:
+If you are using "key" props in an array of `<PersistenceOfVision>`, make sure you render existing and missing `<PoV>` in the same `Array.map()` loop. Consider the keys in between these two scenarios:
 
 ```jsx
 <ul>
@@ -303,7 +310,11 @@ And
 </ul>
 ```
 
-Although two outcomes are the same, the keys of two "DEF" are different. When React is reconciling the first scenario into the second, "DEF" will get destroyed and reconstructed. This is because the first "DEF" is rendered in the *first* array, and the second "DEF" is rendered in *another* array.
+Although two outcomes are the same, the keys of two "DEF" are different. When React is reconciling the first scenario into the second, "DEF" will get destroyed and reconstructed. This is because the first "DEF" is rendered in the *first* array, and the second "DEF" is rendered in *another* array. Their key can never be the same regardless of its actual value.
+
+# What's next?
+
+We have created a [`react-augmentation-sandbox`](https://github.com/compulim/react-augmentation-sandbox) repository to let everyone to hack the augmentation operators.
 
 # Contributions
 
