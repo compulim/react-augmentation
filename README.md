@@ -138,7 +138,7 @@ You wrap `<Modal>` in `<Inlet>` and put side-by-side to where its lifetime is ma
 </body>
 ```
 
-Similar to Redux `<Provider>`, which use React context intensively. To support pipe operator, you need to wrap your one of the common ancestor of `<Inlet>` and `<Outlet>` component, with `<PipeProvider>`. Usually, you will wrap the topmost layer of your app.
+Similar to Redux `<Provider>`, which use React context intensively. To support pipe operator, you need to wrap one of the common ancestors of `<Inlet>` and `<Outlet>`, with `<PipeProvider>`. Usually, you wrap the topmost layer of your app.
 
 ## Persistence of vision
 
