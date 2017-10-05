@@ -289,9 +289,7 @@ If you are using "key" props in an array of `<PersistenceOfVision>`, make sure y
 
 ```jsx
 <ul>
-  {
-    [<div key="1">ABC</div>, <div key="2">DEF</div>]
-  }
+  { [<div key="1">ABC</div>, <div key="2">DEF</div>] }
 </ul>
 ```
 
@@ -299,12 +297,8 @@ And
 
 ```jsx
 <ul>
-  {
-    [<div key="1">ABC</div>]
-  }
-  {
-    [<div key="2">DEF</div>]
-  }
+  { [<div key="1">ABC</div>] }
+  { [<div key="2">DEF</div>] }
 </ul>
 ```
 
