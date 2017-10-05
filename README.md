@@ -226,7 +226,7 @@ class List extends React.Component {
         {
           allItems.map(item =>
             <PersistenceOfVision
-              className   ={ item ? '' : 'fadeOut' }
+              className   ={ item ? '' : 'fade-out' }
               wrappingType="li"
             >
               { item }
@@ -262,7 +262,7 @@ After we removed "Buy eggs" from the list, we still render two `<PersistenceOfVi
 ```jsx
 <List>
   <PersistenceOfVision>Buy milk</PersistenceOfVision>
-  <PersistenceOfVision className="fadeOut" />
+  <PersistenceOfVision className="fade-out" />
 </List>
 ```
 
@@ -271,11 +271,11 @@ Which would become
 ```html
 <ul>
   <li>Buy milk</li>
-  <li class="fadeOut">Buy eggs</li>
+  <li class="fade-out">Buy eggs</li>
 </ul>
 ```
 
-Although the last one does not have any content, `<PersistenceOfVision>` will temporarily revive it.
+Although the last one does not have any content, `<PersistenceOfVision>` will temporarily revive it so you can apply the `fade-out` CSS animation.
 
 ### Caveats
 
