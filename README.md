@@ -6,6 +6,8 @@ DOM augmentation operators to simplify UI code and promote data-driven DOM hiera
 
 At first, augmentation operators may be mind-bending, unnecessary, and feels like [Inception](http://www.imdb.com/title/tt1375666/) or, even worse, anti-pattern. They enable scenarios that could otherwise very difficult to implement.
 
+Everything in this library is pure React. Absolutely no DOM manipulation.
+
 ## What is data-driven DOM hierarchy?
 
 Use JSX as how it is designed to use. Support rich, live, and eventful content.
