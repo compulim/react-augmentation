@@ -8,8 +8,8 @@ At first, augmentation operators may be mind-bending and feels like [Inception](
 
 Supported operators:
 
-* [Pipe](#Pipe)
-* [Persistence of Vision](#PersistenceOfVision)
+* [Pipe](#pipe)
+* [Persistence of Vision](#persistence-of-vision)
 
 ## Pipe
 
