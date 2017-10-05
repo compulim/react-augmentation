@@ -1,6 +1,6 @@
 # react-augmentation
 
-DOM augmentation operators to simplify UI code and promote data-driven DOM hierarchy.
+DOM augmentation operators to simplify UI code and promote [data-driven DOM hierarchy](#what-is-data-driven-dom-hierarchy).
 
 # Background
 
