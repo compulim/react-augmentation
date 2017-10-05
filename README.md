@@ -1,10 +1,15 @@
 # react-augmentation
 
-DOM augmentation operators to simplify UI code and promote data-driven DOM hierarchy
+DOM augmentation operators to simplify UI code and promote data-driven DOM hierarchy.
 
 # Operators
 
-At first, augmentation operators may be mind-bending or often feels like Inception. They enable scenarios that could otherwise very difficult to implement.
+At first, augmentation operators may be mind-bending and feels like [Inception](http://www.imdb.com/title/tt1375666/) or, even worse, anti-pattern. They enable scenarios that could otherwise very difficult to implement.
+
+Supported operators:
+
+* [Pipe](#Pipe)
+* [Persistence of Vision](#PersistenceOfVision)
 
 ## Pipe
 
@@ -116,13 +121,13 @@ Then mutate it into
 
 #### Would become
 
-Even all children is unmounted, it will render
-
 ```
 <div>
   <p>Hello, World!</p>
 </div>
 ```
+
+The unmounted element is persisted on the page temporarily.
 
 ### Why you need it?
 
@@ -164,15 +169,21 @@ class List extends React.Component {
   }
 
   render() {
+    // It is important to add empty items and rendering the list together with existing items
+    // This is because the internal handling of key in React
+    const allItems = this.items.concat(new Array(this.state.numItemsRemoved).fill());
+
     return (
       <div>
         {
-          // Wrap all items in <PersistenceOfVision>, key omitted for sample code clarity
-          this.items.map(item => <PersistenceOfVision>{ item }</PersistenceOfVision>)
-        }
-        {
-          // Render additional <PersistenceOfVision> for items removed
-          new Array(this.state.numItemsRemoved).fill(<PersistenceOfVision className="fadeOut" />)
+          allItems.map((item, index) =>
+            <PersistenceOfVision
+              className={ item ? '' : 'fadeOut' }
+              key      ={ index }
+            >
+              { item }
+            </PersistenceOfVision>
+          )
         }
       </div>
     );
@@ -180,7 +191,7 @@ class List extends React.Component {
 }
 ```
 
-Before the user remove "Buy eggs", you render this:
+Before the user remove "Buy eggs", React render this:
 
 ```jsx
 <List>
@@ -189,7 +200,7 @@ Before the user remove "Buy eggs", you render this:
 </List>
 ```
 
-And it become HTML:
+Which become
 
 ```jsx
 <div>
@@ -198,7 +209,7 @@ And it become HTML:
 </div>
 ```
 
-After the user removed "Buy eggs" from the list, we still render two `<PersistenceOfVision>`, like this:
+After we removed "Buy eggs" from the list, we still render two `<PersistenceOfVision>`, like this:
 
 ```jsx
 <List>
@@ -207,7 +218,7 @@ After the user removed "Buy eggs" from the list, we still render two `<Persisten
 </List>
 ```
 
-And it corresponding HTML become:
+Which would become
 
 ```jsx
 <div>
@@ -217,3 +228,42 @@ And it corresponding HTML become:
 ```
 
 Although the last one does not have any content, `<PersistenceOfVision>` will temporarily brought back the content, i.e. "Buy eggs".
+
+### Caveats
+
+#### Temporal effect
+
+Persistence of vision should only be used for short period of time. This is because the effect is temporal and its non-deterministic nature.
+
+#### Using "key" props
+
+If you are using "key" props in an array of `<PersistenceOfVision>`, make sure you render all `<PoV>` in a single `Array.map()` loop. Consider the keys in between these two scenarios:
+
+```jsx
+<ul>
+  {
+    [<div key="1">ABC</div>, <div key="2">DEF</div>]
+  }
+</ul>
+```
+
+And
+
+```jsx
+<ul>
+  {
+    [<div key="1">ABC</div>]
+  }
+  {
+    [<div key="2">DEF</div>]
+  }
+</ul>
+```
+
+Although two outcomes are the same, the keys of two "DEF" are different. When React is reconciling the first scenario into the second, "DEF" will get destroyed and reconstructed. This is because the first "DEF" is rendered in the *first* array, and the second "DEF" is rendered in *another* array.
+
+# Contributions
+
+Like us? [Star](https://github.com/compulim/react-augmentation/stargazers) us.
+
+Found an issue? [File](https://github.com/compulim/react-augmentation/issues) a minimal repro to us.
