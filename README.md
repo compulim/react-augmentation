@@ -1,5 +1,7 @@
 # react-augmentation
 
+[![Build Status](https://travis-ci.org/compulim/react-augmentation.svg?branch=master)](https://travis-ci.org/compulim/react-augmentation)
+
 DOM augmentation operators to simplify UI code and promote [data-driven DOM hierarchy](#what-is-data-driven-dom-hierarchy).
 
 # Background
