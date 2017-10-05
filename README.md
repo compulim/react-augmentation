@@ -66,7 +66,7 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 
 ```jsx
 <body>
-  <PipeProvider className="provider">
+  <PipeProvider className="pipe-provider">
     <div className="inlet">
       <Inlet name="greeting">
         <p>Hello, World!</p>
@@ -83,7 +83,7 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 
 ```html
 <body>
-  <div class="provider">
+  <div class="pipe-provider">
     <div class="inlet">
     </div>
     <div class="outlet">
