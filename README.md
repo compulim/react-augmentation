@@ -2,14 +2,57 @@
 
 DOM augmentation operators to simplify UI code and promote data-driven DOM hierarchy.
 
+# Background
+
+At first, augmentation operators may be mind-bending, unnecessary, and feels like [Inception](http://www.imdb.com/title/tt1375666/) or, even worse, anti-pattern. They enable scenarios that could otherwise very difficult to implement.
+
+## What is data-driven DOM hierarchy?
+
+Use JSX as how it is designed to use.
+
+### Passing array of items
+
+Assume you want to pass a list of item to render.
+
+#### Anti-pattern
+
+```jsx
+<List items={ ['Buy eggs', 'Buy milk'] } />
+```
+
+This is bad, because array passed into `<List>` can differ from time to time even they have same content. React use reference equal to look for changes. You can use memoize function to patch the issue.
+
+#### The right way
+
+```jsx
+<List>
+  <List.Item>Buy eggs</List.Item>
+  <List.Item>Buy milk</List.Item>
+</List>
+```
+
+Use `props.children` to pass items. As a bonus, you can also pass rich and live content.
+
+You may need the anti-pattern because you want to have temporal or permanent control on the lifetime of the items, e.g. for fade out animation. If you allow the user to remove item as needed, it will either break animation, or make the component very complicated to use.
+
+### Deterministic and traceability
+
+Consider you want to show a modal on topmost layer (last child of `<body>`). You may end up either using a global store or build a function, that would be `this.props.dispatch(ModalActions.show())` or `MessageBox.show()` respectively.
+
+Then later on, when you want to put rich and live content in the dialog box, you will need to update the global store or call `MessageBox.show()` continuously. What's worse, if you need to put an `<input>` in the modal, it will become very difficult.
+
+Updating the modal manually and continuously is a plausible workaround, but you will be trading deterministic and traceability. Debugging would become difficult. Saving the current browser state become a complicated business because the modal is non-deterministic.
+
+The better way is to create the modal close to where it is needed. But keeping the modal in the topmost layer means you need to manipulate DOM manually, which is a big no-no for React.
+
 # Operators
 
-At first, augmentation operators may be mind-bending and feels like [Inception](http://www.imdb.com/title/tt1375666/) or, even worse, anti-pattern. They enable scenarios that could otherwise very difficult to implement.
+We build a list of augmentation operators to make data-driven DOM hierarchy a possibility.
 
 Supported operators:
 
 * [Pipe](#pipe)
-* [Persistence of Vision](#persistence-of-vision)
+* [Persistence of vision](#persistence-of-vision)
 
 ## Pipe
 
