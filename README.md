@@ -66,7 +66,7 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 
 ```jsx
 <body>
-  <PipeProvider>
+  <PipeProvider className="provider">
     <div className="inlet">
       <Inlet name="greeting">
         <p>Hello, World!</p>
@@ -83,7 +83,7 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 
 ```html
 <body>
-  <div>
+  <div class="provider">
     <div class="inlet">
     </div>
     <div class="outlet">
@@ -97,7 +97,7 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 
 ### Why you need it?
 
-When the user click "Submit", you want to create a new `<Modal>` and append to `<body>`. This confirm modal will be on top of everything on the page, like this DOM hierarchy:
+When the user click "Submit", you may want to create a new `<Modal>` and append to `<body>`. This confirm modal will be on top of everything on the page, like this DOM hierarchy:
 
 ```jsx
 <body>
