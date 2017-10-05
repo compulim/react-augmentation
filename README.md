@@ -51,9 +51,7 @@ The better way is to use `render()` to create the modal, probably close to where
 
 # Operators
 
-We build a list of augmentation operators to make data-driven DOM hierarchy a possibility.
-
-Supported operators:
+We build a list of augmentation operators to make data-driven DOM hierarchy a possibility:
 
 * [Pipe](#pipe)
 * [Persistence of vision](#persistence-of-vision)
