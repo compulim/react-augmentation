@@ -8,7 +8,7 @@ At first, augmentation operators may be mind-bending, unnecessary, and feels lik
 
 ## What is data-driven DOM hierarchy?
 
-Use JSX as how it is designed to use.
+Use JSX as how it is designed to use. Support rich, live, and eventful content.
 
 ### Passing array of items
 
