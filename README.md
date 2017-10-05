@@ -250,7 +250,7 @@ Before the user remove "Buy eggs", React render this:
 
 Which become
 
-```jsx
+```html
 <ul>
   <li>Buy milk</li>
   <li>Buy eggs</li>
@@ -268,10 +268,10 @@ After we removed "Buy eggs" from the list, we still render two `<PersistenceOfVi
 
 Which would become
 
-```jsx
+```html
 <ul>
   <li>Buy milk</li>
-  <li className="fadeOut">Buy eggs</li>
+  <li class="fadeOut">Buy eggs</li>
 </ul>
 ```
 
