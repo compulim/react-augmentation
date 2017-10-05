@@ -67,12 +67,12 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 ```jsx
 <body>
   <PipeProvider>
-    <div>
+    <div className="inlet">
       <Inlet name="greeting">
         <p>Hello, World!</p>
       </Inlet>
     </div>
-    <div>
+    <div className="outlet">
       <Outlet name="greeting" />
     </div>
   </PipeProvider>
@@ -81,19 +81,17 @@ When you put elements in `<Inlet>`, they will be rendered to `<Outlet>` with sam
 
 #### Would become
 
-```jsx
+```html
 <body>
-  <PipeProvider>
-    <div>
-      <!-- The original place for Inlet -->
+  <div>
+    <div class="inlet">
     </div>
-    <div>
-      <!-- The replaced tag for Outlet -->
+    <div class="outlet">
       <div>
         <p>Hello, World!</p>
       </div>
     </div>
-  </PipeProvider>
+  </div>
 </body>
 ```
 
