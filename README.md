@@ -146,8 +146,6 @@ Similar to Redux `<Provider>`, which use React context intensively. To support p
 
 Reviving an unmounted element temporarily for animation. The revived element is a frozen shallow copy. It is designed to be non-deterministic to demote its usage for extended time.
 
-#### Your code
-
 Initially, you write
 
 ```jsx
@@ -172,7 +170,7 @@ Then you mutate it into
 
 React will render it as the children is never unmounted, like
 
-```
+```html
 <div>
   <p>Hello, World!</p>
 </div>
