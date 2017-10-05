@@ -6,9 +6,9 @@ DOM augmentation operators to simplify UI code and promote [data-driven DOM hier
 
 # Background
 
-At first, augmentation operators may be mind-bending, unnecessary, and feels like [Inception](http://www.imdb.com/title/tt1375666/), or even worse, anti-pattern. They enable scenarios that could otherwise very cumbersome or difficult to implement.
+*Disclaimer: everything in this library is pure React. Absolutely no DOM manipulation.*
 
-Everything in this library is pure React. Absolutely no DOM manipulation.
+At first, augmentation operators may be mind-bending, unnecessary, and often feels like [Inception](http://www.imdb.com/title/tt1375666/), or even worse, anti-pattern. They enable scenarios that could otherwise very cumbersome or difficult to implement.
 
 ## What is data-driven DOM hierarchy?
 
