@@ -1,6 +1,6 @@
 {
   "name": "react-augmentation",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "DOM augmentation operators to simplify UI code and promote data-driven DOM hierarchy",
   "main": "lib/index.js",
   "module": "lib/index.js",
